@@ -88,6 +88,8 @@ function resetStats() {
     reviewCount: 0,
     earned: 0,
     avgEarned: 0,
+    avgRating: 0,
+    ratedReviewCount: 0,
     startDate: moment('2999-01-01'),
     recentDate: moment('1980-01-01'),
     duration: moment.duration(0),
@@ -205,6 +207,10 @@ function parseReviewStats(review) {
   proj[0].earned += +review.price;
   proj[0].count += 1;
   myGlobal.stats.earned += +review.price;
+  if (review.rating) {
+    myGlobal.stats.avgRating += review.rating;
+    myGlobal.stats.ratedReviewCount++;
+  }
 }
 
 /**
@@ -230,6 +236,10 @@ function cleanStats() {
   myGlobal.stats.earned = numToMoney(myGlobal.stats.earned);
   myGlobal.stats.startDate = myGlobal.stats.startDate.format("l");
   myGlobal.stats.recentDate = myGlobal.stats.recentDate.format("l");
+  if (myGlobal.stats.ratedReviewCount !== 0) {
+    myGlobal.stats.avgRating /= myGlobal.stats.ratedReviewCount;
+  }
+  myGlobal.stats.avgRating = myGlobal.stats.avgRating.toFixed(2);
   var dur = moment.duration((myGlobal.stats.duration/myGlobal.stats.reviewCount));
   myGlobal.stats.avgDuration = pad(dur.hours()) + ":" + pad(dur.minutes()) + ":" + pad(dur.seconds());
   myGlobal.stats.reviewCount = numWithComs(myGlobal.stats.reviewCount);
@@ -262,6 +272,7 @@ function updateStats() {
   $('.statCnt').html('Reviews: ' + spnSt + myGlobal.stats.reviewCount + '</span>');
   $('.statEarned').html('Earned: ' + spnSt + myGlobal.stats.earned + '</span>');
   $('.statAvg').html('Average: ' + spnSt + myGlobal.stats.avgEarned + '</span>');
+  $('.statFeedbackAvg').html('Average Rating: ' + spnSt + myGlobal.stats.avgRating + '</span>');
   $('.statStart').html('Earliest: ' + spanSt2 + "Overall Earliest: " +
                        myGlobal.staticStats.startDate + '">' + myGlobal.stats.startDate + '</span>');
   $('.statRecent').html('Latest: ' + spanSt2 + "Overall Latest: " +
