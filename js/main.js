@@ -272,7 +272,13 @@ function updateStats() {
   $('.statCnt').html('Reviews: ' + spnSt + myGlobal.stats.reviewCount + '</span>');
   $('.statEarned').html('Earned: ' + spnSt + myGlobal.stats.earned + '</span>');
   $('.statAvg').html('Average: ' + spnSt + myGlobal.stats.avgEarned + '</span>');
-  $('.statFeedbackAvg').html('Average Rating: ' + spnSt + myGlobal.stats.avgRating + '</span>');
+  var $statFeedAvg = $('.statFeedbackAvg');
+  if (myGlobal.stats.ratedReviewCount !== 0) {
+    $statFeedAvg.html('Average Rating: ' + spnSt + myGlobal.stats.avgRating + '</span>');
+    $statFeedAvg.show();
+  } else {
+    $statFeedAvg.hide();
+  }
   $('.statStart').html('Earliest: ' + spanSt2 + "Overall Earliest: " +
                        myGlobal.staticStats.startDate + '">' + myGlobal.stats.startDate + '</span>');
   $('.statRecent').html('Latest: ' + spanSt2 + "Overall Latest: " +
