@@ -29,10 +29,10 @@ body {
 }
 
 .popover {
-  min-width: 320px; !important;
-  max-width: 600px; !important;
-  width: auto; !important;
-  height: auto; !important;
+  min-width: 320px !important;
+  max-width: 600px !important;
+  width: auto !important;
+  height: auto !important;
 }
 
 .fa {
@@ -232,3 +232,16 @@ body {
     box-shadow: 0 1px 1px rgba(31, 144, 200, 0.8) inset, 0 0 8px rgba(31, 144, 200, 0.6);
     outline: 0 none !important;
 }
+
+/* Dirty hack to prevent overlay of the filter row */
+@media screen and (min-width: 837px) and (max-width: 1270px) {
+  .filter-row {
+    margin-top: 60px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 836px) {
+  .filter-row {
+    margin-top: 110px;
+  }
+}
+

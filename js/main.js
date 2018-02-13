@@ -484,7 +484,7 @@ function handleModal(id) {
           ' (Earned: ' + data.earned + ')</li>' +
     pre + 'Grader: ' + data.grader.name +
           ' (ID: ' + data.grader_id + ')</li>' +
-    pre + 'User: ' + data.user.name +
+    pre + 'Student: ' + data.student.name +
           ' (ID: ' + data.user_id + ')</li>' +
 
     pre + 'Created: ' + moment(data.created_at).format('llll') + '</li>' +
